@@ -4,7 +4,7 @@ import Habit from "./habit";
 
 export default class Habits extends Component {
 	render() {
-		const { habits, onIncrement, onDecrement, onDelete, onAdd } =
+		const { habits, onIncrement, onDecrement, onDelete, onAdd, onReset } =
 			this.props;
 
 		return (
@@ -21,7 +21,9 @@ export default class Habits extends Component {
 						/>
 					))}
 				</ul>
-				<button className="count-reset">Reset All</button>
+				<button className="count-reset" onClick={onReset}>
+					Reset All
+				</button>
 			</section>
 		);
 	}
