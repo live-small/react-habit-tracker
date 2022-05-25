@@ -40,8 +40,10 @@ export default class App extends Component {
 	};
 
 	handleAdd = (name) => {
-		const id = this.state.habits.length + 1;
-		const habits = [...this.state.habits, { name, id, count: 0 }];
+		const habits = [
+			...this.state.habits,
+			{ id: Date.now(), name, count: 0 },
+		];
 		this.setState({ habits });
 	};
 
