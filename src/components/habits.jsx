@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import AddForm from "./addForm";
 import Habit from "./habit";
 
 export default class Habits extends Component {
@@ -12,16 +13,7 @@ export default class Habits extends Component {
 
 		return (
 			<section className="habits">
-				<form className="add-form">
-					<input placeholder="habit" className="add-input"></input>
-					<button
-						className="habit-add"
-						onClick={this.handleAddHabit}
-						type="button"
-					>
-						Add
-					</button>
-				</form>
+				<AddForm onAddHabit={this.handleAddHabit} />
 				<ul>
 					{habits.map((habit) => (
 						<Habit
