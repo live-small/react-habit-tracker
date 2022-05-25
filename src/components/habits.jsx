@@ -2,16 +2,23 @@ import React, { Component } from "react";
 import Habit from "./habit";
 
 export default class Habits extends Component {
+	handleAddHabit = () => {
+		const habit = document.querySelector(".add-input").value;
+		this.props.onAdd(habit);
+	};
+
 	render() {
-		const { habits, onIncrement, onDecrement, onDelete, onAdd } =
-			this.props;
-		// input을 잡으려면 useRef밖에 없나? <= class는 어떻게 대응 ?
+		const { habits, onIncrement, onDecrement, onDelete } = this.props;
 
 		return (
 			<section className="habits">
 				<form className="add-form">
 					<input placeholder="habit" className="add-input"></input>
-					<button className="habit-add" onClick={() => onAdd()}>
+					<button
+						className="habit-add"
+						onClick={this.handleAddHabit}
+						type="button"
+					>
 						Add
 					</button>
 				</form>

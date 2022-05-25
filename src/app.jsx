@@ -48,7 +48,11 @@ export default class app extends Component {
 		return habits.filter((habit) => habit.count > 0).length;
 	};
 
-	handleAdd = () => {};
+	handleAdd = (name) => {
+		const id = this.state.habits.length + 1;
+		const habits = [...this.state.habits, { name, id, count: 0 }];
+		this.setState({ habits });
+	};
 
 	render() {
 		return (
