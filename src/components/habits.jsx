@@ -4,6 +4,8 @@ import Habit from "./habit";
 
 export default class Habits extends Component {
 	render() {
+		console.log(`habits`);
+
 		const { habits, onIncrement, onDecrement, onDelete, onAdd, onReset } =
 			this.props;
 

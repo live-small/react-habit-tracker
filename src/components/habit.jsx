@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 
 // export default function Habit() {
 // 	return (
@@ -22,10 +22,11 @@ import React, { Component } from "react";
 // }
 
 // class 컴포넌트
-class Habit extends Component {
+class Habit extends PureComponent {
 	render() {
 		const { onIncrement, onDecrement, onDelete, habit } = this.props;
 		const { name, count } = habit;
+		console.log(`render : ${habit.name}`);
 
 		return (
 			<li className="habit">

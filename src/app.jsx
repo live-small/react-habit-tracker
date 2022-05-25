@@ -14,7 +14,7 @@ export default class App extends Component {
 	};
 
 	handleIncrement = (habit) => {
-		// 리액트는 state를 직접 수정하면 안된다. -> 불변성을 유지해야함!! 안그러면 버그가 많이 생김..
+		// 리액트는 state를 직접 수정하면 안된다. -> 불변성을 유지해야함!! 그 이유는, 성능과 관련있음
 		const habits = [...this.state.habits];
 		const key = habits.indexOf(habit);
 		habits[key].count++;
@@ -56,6 +56,7 @@ export default class App extends Component {
 	};
 
 	render() {
+		console.log(`app`);
 		return (
 			<>
 				<NavBar
