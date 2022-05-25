@@ -1,8 +1,16 @@
 import "./app.css";
 import Habits from "./components/habits";
+import NavBar from "./components/navbar";
 
-function App() {
-	return <Habits />;
+import React, { Component } from "react";
+
+export default class app extends Component {
+	render() {
+		return (
+			<>
+				<NavBar />
+				<Habits />
+			</>
+		);
+	}
 }
-
-export default App;

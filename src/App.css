@@ -1,7 +1,62 @@
+* {
+	box-sizing: border-box;
+}
+
 button {
 	outline: none;
 	border: 0;
 	cursor: pointer;
+}
+
+nav {
+	width: 100%;
+	background-color: antiquewhite;
+	font-size: 2rem;
+	padding: 1rem;
+}
+
+.fa-leaf {
+	color: green;
+	margin: 0 1rem;
+}
+
+.total-count {
+	display: inline-block;
+	font-size: 2rem;
+	width: 2.5rem;
+	height: 2.5rem;
+	background-color: green;
+	color: white;
+	border-radius: 50%;
+	text-align: center;
+	margin-left: 1.5rem;
+}
+
+.habits {
+	padding: 0.2rem 0.5rem;
+}
+
+.add-form {
+	padding: 2rem 0;
+}
+
+.add-input {
+	font-size: 2rem;
+	margin-right: 0.5rem;
+}
+
+.habit-add {
+	background-color: green;
+	color: white;
+	padding: 0.5rem;
+	font-size: 1.4rem;
+}
+
+.count-reset {
+	padding: 0.5rem 2rem;
+	font-size: 1.5rem;
+	background-color: green;
+	color: white;
 }
 
 .habit {

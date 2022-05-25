@@ -36,17 +36,24 @@ export default class Habits extends Component {
 
 	render() {
 		return (
-			<ul>
-				{this.state.habits.map((habit) => (
-					<Habit
-						key={habit.id}
-						habit={habit}
-						onIncrement={this.handleIncrement}
-						onDecrement={this.handleDecrement}
-						onDelete={this.handleDelete}
-					/>
-				))}
-			</ul>
+			<section className="habits">
+				<form className="add-form">
+					<input placeholder="habit" className="add-input"></input>
+					<button className="habit-add">Add</button>
+				</form>
+				<ul>
+					{this.state.habits.map((habit) => (
+						<Habit
+							key={habit.id}
+							habit={habit}
+							onIncrement={this.handleIncrement}
+							onDecrement={this.handleDecrement}
+							onDelete={this.handleDelete}
+						/>
+					))}
+				</ul>
+				<button className="count-reset">Reset All</button>
+			</section>
 		);
 	}
 }
