@@ -1,29 +1,29 @@
-import React, { PureComponent } from "react";
+import React, { useRef } from "react";
 
-export default class AddForm extends PureComponent {
-	// pureComponent: props, state를 얕은비교과정을 거쳐(shouldComponentUpdate) 다를 때만, 다시 렌더링함
-	// - 여긴 상태값을 props로 받지 않기에 리렌더링 될 가능성 없음
-	inputRef = React.createRef();
+// ! AddForm의 onAdd가 변경되지 않는데 계속 리렌더링 일어남 **
 
-	onAdd = (event) => {
+function AddForm({ onAdd }) {
+	console.log(`add form`);
+	const inputRef = useRef(null);
+
+	const handleAdd = (event) => {
 		event.preventDefault();
-		const name = this.inputRef.current.value;
+		const name = inputRef.current.value;
 		if (!name) return;
-		this.props.onAdd(name);
-		this.inputRef.current.value = "";
+		onAdd(name);
+		inputRef.current.value = "";
 	};
 
-	render() {
-		console.log(`addForm`);
-		return (
-			<form className="add-form" onSubmit={this.onAdd}>
-				<input
-					ref={this.inputRef}
-					placeholder="habit"
-					className="add-input"
-				></input>
-				<button className="habit-add">Add</button>
-			</form>
-		);
-	}
+	return (
+		<form className="add-form" onSubmit={handleAdd}>
+			<input
+				ref={inputRef}
+				placeholder="habit"
+				className="add-input"
+			></input>
+			<button className="habit-add">Add</button>
+		</form>
+	);
 }
+
+export default React.memo(AddForm);

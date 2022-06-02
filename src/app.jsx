@@ -2,82 +2,72 @@ import "./app.css";
 import Habits from "./components/habits";
 import NavBar from "./components/navbar";
 
-import React, { Component } from "react";
+import React, { useState } from "react";
 
-export default class App extends Component {
-	state = {
-		habits: [
-			{ id: 1, name: "Reading", count: 0 },
-			{ id: 2, name: "eating", count: 0 },
-			{ id: 3, name: "studying", count: 0 },
-		],
-	};
+const habitsInit = [
+	{ id: 1, name: "Reading", count: 0 },
+	{ id: 2, name: "eating", count: 0 },
+	{ id: 3, name: "studying", count: 0 },
+];
 
-	handleIncrement = (habit) => {
-		// 리액트는 state를 직접 수정하면 안된다. -> 불변성을 유지해야함!! 그 이유는, 성능과 관련있음
-		const habits = this.state.habits.map((item) => {
+export default function App() {
+	const [habits, setHabits] = useState(habitsInit);
+
+	const handleIncrement = (habit) => {
+		const updateHabits = habits.map((item) => {
 			if (item.id === habit.id) {
 				return { ...habit, count: habit.count + 1 };
 			}
 			return item;
 		});
-		this.setState({ habits });
+		setHabits(updateHabits);
 	};
+	// 컴포넌트 리렌더링 될 때마다 재생성되지 않나요? -> 컴포넌트 밖에 두는 게 좋으려나?
 
-	handleDecrement = (habit) => {
-		const habits = this.state.habits.map((item) => {
+	const handleDecrement = (habit) => {
+		const updateHabits = habits.map((item) => {
 			if (item.id === habit.id) {
 				const count = habit.count - 1;
 				return { ...habit, count: count < 0 ? 0 : count };
 			}
 			return item;
 		});
-		this.setState({ habits });
+		setHabits(updateHabits);
 	};
 
-	handleDelete = (habit) => {
-		const habits = this.state.habits.filter((item) => item.id !== habit.id);
-		this.setState({ habits });
+	const handleDelete = (habit) => {
+		const updateHabits = habits.filter((item) => item.id !== habit.id);
+		setHabits(updateHabits);
 	};
 
-	handleAdd = (name) => {
-		const habits = [
-			...this.state.habits,
-			{ id: Date.now(), name, count: 0 },
-		];
-		this.setState({ habits });
+	const handleAdd = (name) => {
+		const updateHabits = [...habits, { id: Date.now(), name, count: 0 }];
+		setHabits(updateHabits);
 	};
 
-	handleReset = () => {
-		// 이게 불변성을 지킨거 아닌가요? -> 0인 애들은 0인 새 객체를 줄 필요가 없다!
-		const habits = this.state.habits.map((habit) => {
+	const handleReset = () => {
+		const updateHabits = habits.map((habit) => {
 			if (habit.count !== 0) {
 				return { ...habit, count: 0 };
 			}
 			return habit;
 		});
-		this.setState({ habits });
+		setHabits(updateHabits);
 	};
 
-	render() {
-		console.log(`app`);
-		return (
-			<>
-				<NavBar
-					totalCount={
-						this.state.habits.filter((habit) => habit.count > 0)
-							.length
-					}
-				/>
-				<Habits
-					habits={this.state.habits}
-					onIncrement={this.handleIncrement}
-					onDecrement={this.handleDecrement}
-					onDelete={this.handleDelete}
-					onAdd={this.handleAdd}
-					onReset={this.handleReset}
-				/>
-			</>
-		);
-	}
+	return (
+		<>
+			<NavBar
+				totalCount={habits.filter((habit) => habit.count > 0).length}
+			/>
+			<Habits
+				habits={habits}
+				onIncrement={handleIncrement}
+				onDecrement={handleDecrement}
+				onDelete={handleDelete}
+				onAdd={handleAdd}
+				onReset={handleReset}
+			/>
+		</>
+	);
 }
