@@ -1,7 +1,5 @@
 import React, { useRef } from "react";
 
-// ! AddForm의 onAdd가 변경되지 않는데 계속 리렌더링 일어남 **
-
 function AddForm({ onAdd }) {
 	console.log(`add form`);
 	const inputRef = useRef(null);
